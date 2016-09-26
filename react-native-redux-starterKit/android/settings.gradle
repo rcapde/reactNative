@@ -1,0 +1,3 @@
+rootProject.name = 'RN_redux_starter'
+
+include ':app'

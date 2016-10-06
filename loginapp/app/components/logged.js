@@ -7,11 +7,27 @@ export default class Logged extends Component{
   constructor(props){
     super(props);
   }
+  navigate(routeName){
+    firebase.auth().signOut()
+    this.props.navigator.push({
+      name: routeName
+    })
+  }
   render(){
     return(
       <View style={styles.container} >
-        <Text style={{fontSize: 40}}>Benvingut {this.props.username}, estas conectat!!</Text>
-        <Button onPress={() => firebase.auth().signOut()}>Log Out </Button>
+        <View style={styles.body}>
+          <Text style={{fontSize: 40}}>Benvingut , estas conectat!!</Text>
+            <Button onPress={this.navigate.bind(this, 'root')}
+              buttonStyle={{marginTop:40, width: 380, backgroundColor:"royalblue"}}
+              fontSize={36}
+              raised
+              title='LOG OUT'
+              />
+        </View>
+
+        <View style={styles.footer}>
+        </View>
       </View>
     );
   }
@@ -20,7 +36,7 @@ export default class Logged extends Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#ddd',
+    backgroundColor:'#f7f7f7',
     alignItems: 'stretch'
   },
   header: {
@@ -33,5 +49,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 2,
+    alignItems:'center',
+    justifyContent:'center'
   },
 });

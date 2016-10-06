@@ -54,7 +54,7 @@ export default class Login extends Component{
     }
     return (
       <Button
-      buttonStyle={{marginTop:40, width: 380, backgroundColor:"orange"}}
+      buttonStyle={{marginTop:40, width: 380, backgroundColor:"crimson"}}
       fontSize={36}
       raised
       title='LOGIN'

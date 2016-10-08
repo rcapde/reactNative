@@ -1,0 +1,3 @@
+rootProject.name = 'orderlist'
+
+include ':app'

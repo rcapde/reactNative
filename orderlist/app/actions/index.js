@@ -4,3 +4,10 @@ export const selectLibrary = (libraryId) =>{
     payload: libraryId
   };
 };
+
+export const selectItem = (selectItemId) =>{
+  return {
+    type: 'select_item',
+    payload: selectItemId
+  };
+};

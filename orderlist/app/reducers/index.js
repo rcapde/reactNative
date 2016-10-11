@@ -4,8 +4,10 @@ them later in our containers or components¡
 import { combineReducers } from 'redux';
 import dataReducer from './data_reducer';
 import SelectionReducer from './selection_reducer';
+import SelectItem from './selectItem_reducer';
 
 export default combineReducers ({
     data: dataReducer,
-    selectedLibraryId: SelectionReducer
+    selectedLibraryId: SelectionReducer,
+    selectedItem: SelectItem
 });

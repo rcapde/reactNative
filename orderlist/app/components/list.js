@@ -11,11 +11,14 @@ class List extends Component{
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        {title:'Pizza Fresca',ingredient:'tomatti'},
-        {title:'Pizza La Cosa Nostra',ingredient:'uovo'},
-        {title:'Pizza Diabolo Rosso',ingredient:'semula'},
-        {title:'Pizza paverotti',ingredient:'gran paddano'},
-        {title:'Pizza Porca miseria',ingredient:'burro'}
+        {id:0, title:'Pizza Tonno',ingredient:'Tomate, Mozzarella y Atún '},
+        {id:1, title:'Pizza Fresca',ingredient:'Tomate, Mozzarella y Champiñón',image:'./react.png'},
+        {id:2, title:'Pizza La Cosa Nostra',ingredient:'Tomate, Mozzarella, Carne picada, Cebolla, Bacon y Piña con el borde relleno de Mozzarella'},
+        {id:3, title:'Pizza Diabolo Rosso',ingredient:'Tomate, Mozzarella, Espárragos, Chorizo, Jamón York y Anchoas'},
+        {id:4, title:'Pizza paverotti',ingredient:'Tomate, Mozzarella, Jamón York, Champiñón, Huevos y Roquefor'},
+        {id:5, title:'Pizza Porca miseria',ingredient:'Tomate, Mozzarella, Parmesano, Gruyere y Roquefort '},
+        {id:6, title:'Pizza La Familia',ingredient:'omate, Mozzarella, Jamón York, Anchoas, Champiñón, Alcachofa y Pimiento'},
+        {id:7, title:'Pizza Napoli',ingredient:'Tomate, Mozzarella, Jamón York, Salchichas y Patatas fritas'},
       ]),
     };
   }
@@ -31,10 +34,13 @@ class List extends Component{
   }
   render(){
     return(
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={(rowData) => <ListItem library={rowData}/>}
-            />
+
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <ListItem library={rowData}/>}
+          />
+
+
     )
   }
 }

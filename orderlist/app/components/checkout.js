@@ -16,7 +16,7 @@ export default class Checkout extends Component{
         <View style={styles.container} >
           <View style={styles.body}>
             <Text style={{fontSize: 40}}>CheckoutList</Text>
-              <Button onPress={this.navigate.bind(this, 'checkout')}
+              <Button onPress={this.navigate.bind(this, 'list')}
                 buttonStyle={{marginTop:40, width: 380, backgroundColor:"royalblue"}}
                 fontSize={36}
                 raised

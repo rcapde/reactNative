@@ -3,7 +3,9 @@ them later in our containers or components¡
 */
 import { combineReducers } from 'redux';
 import dataReducer from './data_reducer';
+import SelectionReducer from './selection_reducer';
 
 export default combineReducers ({
     data: dataReducer,
+    selectedLibraryId: SelectionReducer
 });

@@ -5,7 +5,7 @@ export default class Header extends Component{
   render(){
     return(
       <View>
-        <Text style={{fontSize:36}}>AAAAAAAAHH!!</Text>
+        <Text style={{fontSize:36}}>Make the order</Text>
       </View>
     );
   }

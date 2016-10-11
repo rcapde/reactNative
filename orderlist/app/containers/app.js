@@ -22,6 +22,7 @@ export default class App extends Component{
   render(){
     return(
         <View style={styles.container}>
+
           <View style={styles.header}>
             <Header />
           </View>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex:1,
-    backgroundColor:'#298',
+    backgroundColor:'#f9f9f9',
     justifyContent:'center',
     alignItems:'center',
   },

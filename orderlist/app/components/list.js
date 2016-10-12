@@ -10,16 +10,7 @@ class List extends Component{
     const array = this.props.data;
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
-        {id:0, title:'Pizza Tonno',ingredient:'Tomate, Mozzarella y Atún ',ordered:false},
-        {id:1, title:'Pizza Fresca',ingredient:'Tomate, Mozzarella y Champiñón',image:'./react.png',ordered:false},
-        {id:2, title:'Pizza La Cosa Nostra',ingredient:'Tomate, Mozzarella, Carne picada, Cebolla, Bacon y Piña con el borde relleno de Mozzarella',ordered:false},
-        {id:3, title:'Pizza Diabolo Rosso',ingredient:'Tomate, Mozzarella, Espárragos, Chorizo, Jamón York y Anchoas',ordered:false},
-        {id:4, title:'Pizza paverotti',ingredient:'Tomate, Mozzarella, Jamón York, Champiñón, Huevos y Roquefor',ordered:false},
-        {id:5, title:'Pizza Porca miseria',ingredient:'Tomate, Mozzarella, Parmesano, Gruyere y Roquefort ',ordered:false},
-        {id:6, title:'Pizza La Familia',ingredient:'omate, Mozzarella, Jamón York, Anchoas, Champiñón, Alcachofa y Pimiento',ordered:false},
-        {id:7, title:'Pizza Napoli',ingredient:'Tomate, Mozzarella, Jamón York, Salchichas y Patatas fritas',ordered:false},
-      ]),
+      dataSource: ds.cloneWithRows(this.props.data),
     };
   }
 
@@ -34,11 +25,22 @@ class List extends Component{
   }
   render(){
     return(
-
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <ListItem library={rowData}/>}
-          />
+      <View style={styles.container}>
+        <View style={styles.body}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(rowData) => <ListItem library={rowData}/>}
+            />
+        </View>
+        <View style={styles.footer}>
+          <Button onPress={this.navigate.bind(this, 'checkout')}
+            buttonStyle={{width: 300, height:70,backgroundColor:"royalblue"}}
+            fontSize={36}
+            raised
+            title='Checkout'
+            />
+        </View>
+      </View>
 
 
     )
@@ -64,7 +66,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   footer: {
-    flex: 2,
+    backgroundColor: 'white',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

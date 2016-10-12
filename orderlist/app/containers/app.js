@@ -6,6 +6,7 @@ import {StyleSheet, View, Text, TouchableOpacity, Navigator} from 'react-native'
 import List from '../components/list';
 import Checkout from '../components/checkout';
 import Header from '../components/header';
+import Root from '../components/root';
 
 export default class App extends Component{
   constructor(props){
@@ -18,17 +19,17 @@ export default class App extends Component{
     if(route.name == 'checkout') {
       return <Checkout navigator={navigator} />;
     }
+    if(route.name == 'root') {
+      return <Root navigator={navigator} />;
+    }
   }
   render(){
     return(
         <View style={styles.container}>
 
-          <View style={styles.header}>
-            <Header />
-          </View>
           <View style={styles.body}>
             <Navigator
-              initialRoute={{name: 'list'}}
+              initialRoute={{name: 'root'}}
               renderScene={this.renderScene.bind(this)}
               />
           </View>

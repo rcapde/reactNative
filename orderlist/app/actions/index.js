@@ -5,9 +5,9 @@ export const selectLibrary = (libraryId) =>{
   };
 };
 
-export const selectItem = (selectItemId) =>{
+export const isOrdered = (ordered) =>{
   return {
-    type: 'select_item',
-    payload: selectItemId
+    type: 'is_ordered',
+    payload: ordered
   };
 };

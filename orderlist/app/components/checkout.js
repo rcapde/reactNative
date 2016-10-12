@@ -1,11 +1,28 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import { Button } from 'react-native-elements'
+import {StyleSheet, View, Text, TouchableOpacity, ListView} from 'react-native';
+import { Button } from 'react-native-elements';
+import CheckoutListItem from './checkoutlistitem';
+import { connect } from 'react-redux'
 
-export default class Checkout extends Component{
+class Checkout extends Component{
   constructor(props){
       super(props);
+
+      const array = this.props.data.filter( m => {
+        return(
+          this.props.data.ordered == false
+        );
+      });
+      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      this.state = {
+        dataSource: ds.cloneWithRows(array),
+      };
     }
+
+    renderFila(library){
+      return <CheckoutListItem library={library} />;
+    }
+
     navigate(routeName){
       this.props.navigator.pop({
         name: routeName
@@ -13,18 +30,26 @@ export default class Checkout extends Component{
     }
     render(){
       return(
-        <View style={styles.container} >
+        <View style={styles.container}>
           <View style={styles.body}>
-            <Text style={{fontSize: 40}}>CheckoutList</Text>
-              <Button onPress={this.navigate.bind(this, 'list')}
-                buttonStyle={{marginTop:40, width: 380, backgroundColor:"royalblue"}}
-                fontSize={36}
-                raised
-                title='Back'
-                />
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={(rowData) => <CheckoutListItem library={rowData}/>}
+              />
           </View>
-
           <View style={styles.footer}>
+            <Button onPress={this.navigate.bind(this, 'checkout')}
+              buttonStyle={{width: 300,backgroundColor:"royalblue"}}
+              fontSize={36}
+              raised
+              title='Back'
+              />
+            <Button onPress={this.navigate.bind(this, 'checkout')}
+              buttonStyle={{width: 400,backgroundColor:"crimson"}}
+              fontSize={36}
+              raised
+              title='Proceed to checkout'
+            />
           </View>
         </View>
       );
@@ -34,20 +59,32 @@ export default class Checkout extends Component{
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor:'#f4f4f4',
-      alignItems: 'stretch'
+      backgroundColor: '#f4f4f4',
     },
     header: {
       flex:1,
     },
     body: {
       flex: 10,
-      alignItems: 'center',
-      justifyContent:'center'
+
+    },
+    list:{
+      flex: 1,
+      justifyContent:'space-around',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
     },
     footer: {
-      flex: 2,
-      alignItems:'center',
-      justifyContent:'center'
+      flex: 3,
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      flexDirection: 'row',
+      flexWrap: 'nowrap',
     },
   });
+
+  const mapStateToProps = state => {
+    return { data: state.data };
+  };
+
+  export default connect(mapStateToProps)(Checkout)

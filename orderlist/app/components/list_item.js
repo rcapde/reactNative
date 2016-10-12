@@ -11,6 +11,7 @@ class ListItem extends Component{
   }
   ordered(){
     this.setState({ordered: !this.state.ordered})
+    this.props.isOrdered(this.props.library.id)
   }
   renderButton(){
     if(!this.state.ordered){
@@ -41,7 +42,7 @@ class ListItem extends Component{
       return (
         <View style={[styles.hiddenContainer]}>
           <View style={{flex:1, flexWrap:'wrap'}}>
-            <Text style={{fontSize:26,color:'#ddd'}}><Text style={{color:'white'}}>Ingredients: </Text>{this.props.library.ingredient}</Text>
+            <Text style={{fontSize:26,color:'#ddd'}}><Text style={{color:'white'}}>Ingredients: </Text>{this.props.library.ingredients}</Text>
           </View>
             {this.renderButton()}
         </View>
@@ -54,10 +55,9 @@ class ListItem extends Component{
         onPress={() => this.props.selectLibrary(this.props.library.id)}
         >
         <View>
-          <View style={[styles.container,{backgroundColor: this.state.ordered ? 'limegreen' : '#e3e3e3'}]}>
+          <View style={[styles.container,{backgroundColor: this.state.ordered ? 'tomato' : '#e3e3e3'}]}>
             <Image style={styles.image}
-                    source={require('./react.png')}
-            />
+              source={{ uri: this.props.library.image }} />
           <Text style={{fontSize:42}}>{this.props.library.title}</Text>
           </View>
           {this.renderDescription()}
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     backgroundColor:'#e3e3e3',
     justifyContent:'flex-start',
     alignItems:'center',
-    borderBottomWidth:1,
-    borderColor:'black',
+    borderBottomWidth:4,
+    borderColor:'#f7f7f7',
   },
   hiddenContainer:{
     flex: 1,
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
     backgroundColor:'crimson',
     justifyContent:'space-around',
     alignItems:'center',
-    borderBottomWidth:1,
-    borderColor:'black',
+    borderBottomWidth:6,
+    borderColor:'#f7f7f7',
     flexWrap: 'wrap',
   },
   image:{

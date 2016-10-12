@@ -11,14 +11,5 @@ const initialState = [
 ]
 
 export default (state = initialState, action) => {
-  switch(action.type){
-    case 'is_ordered':
-    return state.map(item =>
-                     item.id === action.payload ?
-                       Object.assign({}, item, { ordered: !item.ordered }) :
-                       item
-                   )
-   default:
     return state
   }
-};

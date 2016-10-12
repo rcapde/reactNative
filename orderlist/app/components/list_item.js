@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Image, TouchableWithoutFeedback,Alert} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableWithoutFeedback,TouchableOpacity,Alert} from 'react-native';
 import { Button } from 'react-native-elements'
 import * as actions from '../actions';
 import { connect } from 'react-redux';
@@ -9,20 +9,22 @@ class ListItem extends Component{
     super(props);
     this.state = {ordered: this.props.ordered};
   }
-  ordered(){
+  ordered(title){
     this.setState({ordered: !this.state.ordered})
-    this.props.isOrdered(this.props.library.id)
+    this.props.addToCard(title)
   }
   renderButton(){
     if(!this.state.ordered){
       return(
+        <TouchableOpacity>
         <Button
           buttonStyle={{marginTop:40, width: 140, height:70, backgroundColor:"limegreen"}}
           fontSize={36}
           raised
           title='Order'
-          onPress={this.ordered.bind(this)}
+          onPress={this.ordered.bind(this,this.props.library.title)}
           />
+        </TouchableOpacity>
       );
     }
     if(this.state.ordered){
@@ -32,7 +34,7 @@ class ListItem extends Component{
           fontSize={36}
           raised
           title='unOrder'
-          onPress={this.ordered.bind(this)}
+          onPress={this.ordered.bind(this,this.props.library.title)}
           />
       );
     }
@@ -42,7 +44,7 @@ class ListItem extends Component{
       return (
         <View style={[styles.hiddenContainer]}>
           <View style={{flex:1, flexWrap:'wrap'}}>
-            <Text style={{fontSize:26,color:'#ddd'}}><Text style={{color:'white'}}>Ingredients: </Text>{this.props.library.ingredients}</Text>
+            <Text style={{fontSize:26,color:'#ddd'}}><Text style={{color:'white'}}>Ingredients: </Text>{this.props.library.ordered}</Text>
           </View>
             {this.renderButton()}
         </View>
@@ -112,7 +114,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     selectedLibraryId: state.selectedLibraryId,
-    selectedItem: state.selectedItem
   }
 }
 

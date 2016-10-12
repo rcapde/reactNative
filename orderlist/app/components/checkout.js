@@ -8,14 +8,9 @@ class Checkout extends Component{
   constructor(props){
       super(props);
 
-      const array = this.props.data.filter( m => {
-        return(
-          this.props.data.ordered == false
-        );
-      });
       const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       this.state = {
-        dataSource: ds.cloneWithRows(array),
+        dataSource: ds.cloneWithRows(this.props.checkoutData),
       };
     }
 
@@ -84,7 +79,7 @@ class Checkout extends Component{
   });
 
   const mapStateToProps = state => {
-    return { data: state.data };
+    return { checkoutData: state.checkoutData };
   };
 
   export default connect(mapStateToProps)(Checkout)

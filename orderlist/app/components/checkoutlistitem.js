@@ -4,51 +4,27 @@ import { Button } from 'react-native-elements'
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 
-class ListItem extends Component{
+class CheckoutListItem extends Component{
   constructor(props){
     super(props);
-    this.state = {ordered: this.props.ordered};
-  }
-  ordered(){
-    this.setState({ordered: !this.state.ordered})
-    this.props.isOrdered(this.state.ordered)
-  }
-  renderButton(){
-    if(!this.state.ordered){
-      return(
-        <Button
-          buttonStyle={{marginTop:40, width: 140, height:70, backgroundColor:"limegreen"}}
-          fontSize={36}
-          raised
-          title='Order'
-          onPress={this.ordered.bind(this)}
-          />
-      );
-    }
-    if(this.state.ordered){
-      return(
-        <Button
-          buttonStyle={{marginTop:40, width: 140, height:70, backgroundColor:"orange"}}
-          fontSize={36}
-          raised
-          title='unOrder'
-          onPress={this.ordered.bind(this)}
-          />
-      );
-    }
   }
 
   render(){
     return(
-      <TouchableWithoutFeedback
-        onPress={() => this.props.selectLibrary(this.props.library.id)}
-        >
+      <TouchableWithoutFeedback>
         <View>
-          <View style={[styles.container,{backgroundColor: this.state.ordered ? 'limegreen' : '#e3e3e3'}]}>
+          <View style={[styles.container]}>
             <Image style={styles.image}
                     source={require('./react.png')}
             />
           <Text style={{fontSize:40}}>{this.props.library.title}</Text>
+            <Button
+              buttonStyle={{marginTop:40, width: 140, height:70, backgroundColor:"orange"}}
+              fontSize={36}
+              raised
+              title='unOrder'
+              onPress={() => this.props.deleteFromCard(this.props.library.title)}
+              />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -64,7 +40,7 @@ const styles = StyleSheet.create({
     justifyContent:'flex-start',
     alignItems:'center',
     borderBottomWidth:1,
-    borderColor:'black',
+    borderColor:'red',
   },
   hiddenContainer:{
     flex: 1,
@@ -80,7 +56,6 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     marginRight:40,
-
   },
   title:{
     flex:1,
@@ -98,11 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  return {
-    selectedLibraryId: state.selectedLibraryId,
-    selectedItem: state.selectedItem
-  }
-}
-
-export default connect(mapStateToProps, actions)(ListItem)
+export default connect(null,actions)(CheckoutListItem)

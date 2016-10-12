@@ -5,9 +5,21 @@ export const selectLibrary = (libraryId) =>{
   };
 };
 
-export const isOrdered = (ordered) =>{
+export const toggle = (id) =>{
   return {
-    type: 'is_ordered',
-    payload: ordered
+    type: 'toggle',
+    payload: id
+  };
+};
+export const addToCard = (title) => {
+  return {
+    type: 'addToCard',
+    payload: title
+  };
+};
+export const deleteFromCard = (title) => {
+  return {
+    type: 'deleteFromCard',
+    payload: title
   };
 };

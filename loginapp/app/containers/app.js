@@ -88,7 +88,6 @@ footer: {
 },
 });
 /*
-
 */
 function mapStateToProps(state){
   return{

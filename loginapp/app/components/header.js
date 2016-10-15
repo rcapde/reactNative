@@ -12,7 +12,7 @@ export default class Login extends Component{
   render(){
     return(
       <View style={styles.container} >
-        <Text>{this.props.actualPage}</Text>
+        <Text>hey</Text>
       </View>
     )
   }

@@ -26,11 +26,7 @@ export default class Login extends Component{
 
     firebase.auth().signInWithEmailAndPassword(username,password)
         .then(this.onLoginSuccess.bind(this, 'logged'))
-          .catch(()=>{
-          firebase.auth().createUserWithEmailAndPassword(username ,password)
-            .then(this.onLoginSuccess.bind(this))
               .catch(this.onLoginFail.bind(this));
-        });
   }
 
   onLoginFail(){
